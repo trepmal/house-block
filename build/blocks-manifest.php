@@ -38,6 +38,10 @@ return array(
 			),
 			'flatRoof' => array(
 				'type' => 'boolean'
+			),
+			'doorBellSound' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		)
 	)

@@ -25,6 +25,16 @@
  */
 import { store } from '@wordpress/interactivity';
 
+const houseBlockData = document.getElementById( 'wp-script-module-data-create-block-house-block-view-script-module' );
+let data = {};
+if ( houseBlockData ) {
+	try {
+		data = JSON.parse( houseBlockData.textContent );
+	} catch {}
+}
+
+const defaultDoorBell = new Audio( data.doorBellSound );
+
 const { state } = store( 'house', {
 	state: {
 		get areLightsOn() {
@@ -32,9 +42,17 @@ const { state } = store( 'house', {
 		},
 	},
 	actions: {
-		toggleLight: ( ) => {
+		toggleLight: () => {
 			state.lightsOn = !state.lightsOn;
+		},
+		ringBell: () => {
+			if ( state.doorBellSound ) {
+				console.log( state.doorBellSound );
+				const customDoorBell = new Audio( state.doorBellSound );
+				customDoorBell.play();
+			} else {
+				defaultDoorBell.play();
+			}
 		},
 	},
 } );
-

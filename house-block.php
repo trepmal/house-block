@@ -16,6 +16,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+define( 'DOOR_BELL_SOUND', plugin_dir_url( __FILE__ ) . 'lizard.wav' );
+
+add_filter( 'script_module_data_create-block-house-block-view-script-module', 'create_block_house_block_module_data' );
+function create_block_house_block_module_data( array $data ): array {
+	$data['doorBellSound'] = DOOR_BELL_SOUND;
+	return $data;
+}
+
 /**
  * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
  * Behind the scenes, it also registers all assets so they can be enqueued

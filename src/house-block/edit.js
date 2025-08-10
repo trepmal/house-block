@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { InspectorControls, BlockControls, useBlockProps } from '@wordpress/block-editor';
+import { InspectorControls, BlockControls, useBlockProps, MediaUpload } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -34,19 +34,26 @@ import { useEffect, useState } from 'react';
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { housePaint, trimPaint, flatRoof, lightsOn, houseNumber } = attributes;
+	const { housePaint, trimPaint, flatRoof, lightsOn, houseNumber, doorBellSound } = attributes;
 	const toggleLights = () => setAttributes({ lightsOn: !lightsOn })
 
 	const [paintVisible, setPaintVisible] = useState(false);
 	const [trimVisible, setTrimVisible] = useState(false);
 	const [popoverPaintAnchor, setPopoverPaintAnchor] = useState();
 	const [popoverTrimAnchor, setPopoverTrimAnchor] = useState();
+	// const [popoverTrimAnchor, setPopoverTrimAnchor] = useState();
 
 	const togglePaintColor = () => {
 		setPaintVisible((state) => !state);
 	};
 	const toggleTrimColor = () => {
 		setTrimVisible((state) => !state);
+	};
+	const setDoorBell = (media) => {
+		setAttributes({ doorBellSound: media.url });
+	};
+	const removeDoorBell = (media) => {
+		setAttributes({ doorBellSound: false });
 	};
 
 	// useEffect(() => {
@@ -116,6 +123,23 @@ export default function Edit({ attributes, setAttributes }) {
 							/>
 						</Popover>
 					}
+					<div><br />
+						<MediaUpload
+							onSelect={ setDoorBell }
+							allowedTypes={['audio/wav', 'audio/mpeg', 'audio/aiff']} // Restrict to WAV and MP3 audio files
+							render={ ( { open } ) => (
+								<div>
+									{ doorBellSound &&
+										<audio src={ doorBellSound } controls />
+									}
+									<Button variant="secondary" onClick={ open }>Select Doorbell</Button>
+									{ doorBellSound &&
+										<Button size="small" variant="tertiary" onClick={ removeDoorBell }>Remove Doorbell</Button>
+									}
+								</div>
+							)}
+						/>
+					</div>
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
@@ -134,6 +158,7 @@ export default function Edit({ attributes, setAttributes }) {
 					<div class="chimney" className={flatRoof ? 'chimney short' : 'chimney'}></div>
 					<div class="door" style={{ backgroundColor: trimPaint }}>
 						<div class="numbers" style={{ color: trimPaint }}>{houseNumber || ''}</div>
+						<div class="doorbell">🔔</div>
 					</div>
 					<div class="window" style={{ outlineColor: trimPaint, backgroundColor: lightsOn ? 'yellow' : 'grey' }}></div>
 

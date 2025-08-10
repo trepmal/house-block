@@ -83,6 +83,14 @@ $door-knob-border: goldenrod;
       left: 3px;
       background-color: $door-knob-bg;
     }
+
+    .doorbell {
+      position: absolute;
+      top: 25px;
+      left: -10px;
+      font-size: 6px;
+      cursor: pointer;
+    }
   }
 
   .numbers {
@@ -105,6 +113,13 @@ $door-knob-border: goldenrod;
 
     &.lights-on {
       background-color: $window-light-bg;
+    }
+    .lightswitch {
+			position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 10px;
+      cursor: pointer;
     }
   }
 }

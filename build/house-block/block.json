@@ -33,6 +33,10 @@
     },
     "flatRoof": {
       "type": "boolean"
+    },
+    "doorBellSound": {
+      "type": "string",
+      "default": ""
     }
   }
 }

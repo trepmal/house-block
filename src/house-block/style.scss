@@ -5,89 +5,106 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+$main-bg: beige;
+$block-bg: lightgrey;
+$chimney-bg: firebrick;
+$roof-bg: slategray;
+$door-bg: olive;
+$window-bg: grey;
+$window-outline: olive;
+$window-light-bg: yellow;
+$numbers-color: olive;
+$door-knob-bg: aqua;
+$door-knob-border: goldenrod;
+
 .wp-block-create-block-house-block {
   padding: 50px;
-  background-color: lightgrey;
+  background-color: $block-bg;
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.wp-block-create-block-house-block .main {
-  position: relative;
-  margin:100px 0;
-  width: 200px;
-  height: 100px;
-  background: beige;
-}
+  .main {
+    position: relative;
+    margin: 100px 0;
+    width: 200px;
+    height: 100px;
+    background: $main-bg;
+  }
 
-.wp-block-create-block-house-block .chimney {
- width: 20px;
- height: 150px;
- background-color: firebrick;
-  position: absolute;
-  bottom:0;
-  left:0;
-}
+  .chimney {
+    width: 20px;
+    height: 150px;
+    background-color: $chimney-bg;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 
-.wp-block-create-block-house-block .chimney.short {
- height: 130px;
-}
+    &.short {
+      height: 130px;
+    }
+  }
 
-.wp-block-create-block-house-block .roof {
-  position: absolute;
-  top:-50px;
-  left:-15px;
-  height: 0px;
-  width: 0px;
-  border-left: 115px solid transparent;
-  border-right: 115px solid transparent;
-  border-bottom: 50px solid slategray;
-  background-color: transparent;
-  z-index: 10;
-}
+  .roof {
+    position: absolute;
+    top: -50px;
+    left: -15px;
+    height: 0;
+    width: 0;
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    border-bottom: 50px solid $roof-bg;
+    background-color: transparent;
+    z-index: 10;
 
+    &.flat {
+      height: 35px;
+      width: calc(100% + 30px);
+      border-left: 0;
+      border-right: 0;
+      border-bottom-width: 15px;
+    }
+  }
 
+  .door {
+    position: absolute;
+    left: 140px;
+    bottom: 0;
+    height: 60px;
+    width: 30px;
+    background-color: $door-bg;
 
-.wp-block-create-block-house-block .roof.flat {
-  height: 35px;
-  width: calc( 100% + 30px );
-  border-left: 0;
-  border-right: 0;
-  border-bottom-width: 15px ;
-}
-.wp-block-create-block-house-block .door {
-  position: absolute;
-  left: 140px;
-  bottom: 0;
-  height: 60px;
-  width: 30px;
-  background-color: olive;
-}
-.wp-block-create-block-house-block .door::after {
-  content: "";
-  position: absolute;
-  border: 1px solid goldenrod;
-  border-radius: 1px;
-  bottom: 30px;
-  left: 3px;
-  background-color: aqua;
-}
-.wp-block-create-block-house-block .numbers {
-  position: absolute;
-  top: -15px;
-  width: 30px;
-  font-size: 10px;
-  text-align:center;
-  color: olive;
+    &::after {
+      content: "";
+      position: absolute;
+      border: 1px solid $door-knob-border;
+      border-radius: 1px;
+      bottom: 30px;
+      left: 3px;
+      background-color: $door-knob-bg;
+    }
+  }
 
-}
-.wp-block-create-block-house-block .window {
-  position: absolute;
-  left: 50px;
-  bottom: 30px;
-  height: 30px;
-  width: 60px;
-  background-color: grey;
-  outline: 2px solid olive;
+  .numbers {
+    position: absolute;
+    top: -15px;
+    width: 30px;
+    font-size: 10px;
+    text-align: center;
+    color: $numbers-color;
+  }
+
+  .window {
+    position: absolute;
+    left: 50px;
+    bottom: 30px;
+    height: 30px;
+    width: 60px;
+    background-color: $window-bg;
+    outline: 2px solid $window-outline;
+
+    &.lights-on {
+      background-color: $window-light-bg;
+    }
+  }
 }

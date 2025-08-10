@@ -20,6 +20,21 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
 
-/* eslint-disable no-console */
-console.log( 'front-end house block js' );
-/* eslint-enable no-console */
+/**
+ * WordPress dependencies.
+ */
+import { store } from '@wordpress/interactivity';
+
+const { state } = store( 'house', {
+	state: {
+		get areLightsOn() {
+			return state.lightsOn;
+		},
+	},
+	actions: {
+		toggleLight: ( ) => {
+			state.lightsOn = !state.lightsOn;
+		},
+	},
+} );
+

@@ -14,13 +14,15 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'interactivity' => true
 		),
 		'textdomain' => 'house-block',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
+		'viewScriptModule' => 'file:./view.js',
 		'attributes' => array(
 			'housePaint' => array(
 				'type' => 'string'
